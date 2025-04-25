@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analisador de Números</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Analisador de Números</h1>
+
+        <form method="POST">
+            <div class="form-group">
+                <label for="numero">Digite um número inteiro:</label>
+                <input type="number" id="numero" name="numero"
+                       step="1" required
+                       placeholder="Ex: 5, -2, 0, etc.">
+            </div>
+
+            <button type="submit" class="btn-analisar">Analisar</button>
+        </form>
+
+        {% if erro %}
+            <div class="alert erro">
+                {{ erro }}
+            </div>
+        {% endif %}
+
+        {% if numero is defined %}
+            <div class="resultado">
+                <h2>Resultado da Análise</h2>
+                <p>O número <span class="numero-destaque">{{ numero }}</span> é:</p>
+                <div class="propriedades">
+                    <div class="propriedade {{ par_impar }}">
+                        {{ par_impar|upper }}
+                    </div>
+                    <div class="propriedade {{ pos_neg }}">
+                        {{ pos_neg|upper }}
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
